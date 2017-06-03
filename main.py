@@ -8,23 +8,24 @@ import job
 import company_info
 
 def prepare_keyword():
-    keyword = ['游族网络']
+    keyword = '游族网络'
     return keyword
     
+def a_company_key_workflow(company_name):
+    '''返回一个公司的数据结果'''
+    a_job_list_xml = job.search(company_name)
+    company_coid = job.get_coid(a_job_list_xml)
+    a_company_xml = company_info.find(company_coid)
+    a_company_set = company_info.parse_company(a_company_xml)
+    return a_company_set.post_object(source='51job_search')
+
 def job_workflow():
-    '''存储工作信息流程'''
-    company_names = prepare_keyword()
-    while len(company_names):
-        a_company_name = company_names.pop()
-        page = 1
-        while page <= 10:
-            a_job_list_page_xml = job.search(a_company_name, page)
-            a_job_list_parse_results = job.parse(a_job_list_page_xml)
-            for a_job_info in a_job_list_parse_results:
-                writer.write_to_file(a_job_info)
-            page = page + 1
-            time.sleep(20)
-    pass
+    '''查找公司id信息流程'''
+    while  True:
+        company_name = prepare_keyword()
+        a_set = a_company_key_workflow(company_name)
+        # tools.post(a_company_set.post_object())
+        time.sleep(2)
 
 def analysis_company():
     '''获取公司信息的逻辑'''
@@ -50,8 +51,8 @@ def analysis_company():
 
 
 def main():
-    # job_workflow()
-    analysis_company()
+    job_workflow()
+    # analysis_company()
     pass
 
 

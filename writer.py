@@ -34,7 +34,7 @@ class ResultOfCompany(object):
         self.caddr = caddr
         self.coinfo = coinfo
 
-    def post_object(self):
+    def post_object(self, source=''):
 #         {
 #     "coname" : "coname",            // 名字
 #     "cosize" : "cosize",            // 规模
@@ -53,7 +53,7 @@ class ResultOfCompany(object):
         dic['vocation'] = self.indtype1 + self.indtype2
         dic['location'] = self.caddr
         dic['description'] = self.coinfo
-        dic['source'] = '51job'
+        dic['source'] = source
         return dic
 
 
