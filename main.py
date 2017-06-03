@@ -46,7 +46,7 @@ def analysis_company():
         tools.post(a_company_set.post_object())
         start = start + 1
         writer.record_num(start)
-        time.sleep(2)
+        time.sleep(1)
 
 
 def main():
