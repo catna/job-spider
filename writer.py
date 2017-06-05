@@ -67,7 +67,6 @@ def write_to_file(a_result):
 def write_a_company_info(a_result_of_company):
     with open(folder_name + '/' + ResultOfCompany._file_name, 'a') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=ResultOfCompany._fieldnames)
-        writer.writeheader()
         writer.writerow(a_result_of_company.__dict__)
 
 def record_num(num=-1):
