@@ -45,10 +45,11 @@ def get_item():
         for i in result:
             if i[0] > 15:
                 newcur = connect.cursor()
-                exsql = update_sql + str(i[0]) + ';'
+                item_id = str(i[0])
+                exsql = update_sql + item_id + ';'
                 newcur.execute(exsql)
                 newcur.close()
-                logging.info('------update str(i[0]) -----\n')
+                logging.info('------update ' + item_id + '-----\n')
     except Exception, e:
         logging.info("执行MySQL: %s 时出错：%s" % (exsql, e))
         pass
